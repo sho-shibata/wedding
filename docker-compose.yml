@@ -29,21 +29,24 @@ services:
     command: uvicorn main:app --reload --host 0.0.0.0 --port 8081 --root-path /api
     networks:
       - nginx_network
-  db:
-    image: postgres:14
-    container_name: postgres_db
-    ports:
-      - 5432:5432
-    volumes:
-      - db_store_wedding:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_PASSWORD=postgreswedding
-      - POSTGRES_USER=postgres
-      - POSTGRES_DB=postgres
-    networks:
-      - nginx_network
-volumes:
-  db_store_wedding:
+      - shared_network
+#   db:
+#     image: postgres:14
+#     container_name: postgres_db
+#     ports:
+#       - 5432:5432
+#     volumes:
+#       - db_store_wedding:/var/lib/postgresql/data
+#     environment:
+#       - POSTGRES_PASSWORD=postgreswedding
+#       - POSTGRES_USER=postgres
+#       - POSTGRES_DB=postgres
+#     networks:
+#       - nginx_network
+# volumes:
+#   db_store_wedding:
 networks:
   nginx_network:
     driver: bridge
+  shared_network:
+    external: true
