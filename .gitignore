@@ -1,0 +1,4 @@
+*.log
+*.pyc
+.env
+backend/log/logs
