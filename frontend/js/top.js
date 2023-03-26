@@ -1,4 +1,4 @@
-const baseUrl = 'http://s-wedding-invitation/api/';
+const baseUrl = 'http://s-wedding-invitation.com/api/';
 // const baseUrl = 'http://localhost/api/';
 
 $(function(){
