@@ -39,6 +39,7 @@ const checkAttendence = function(){
 
 // 送信ボタン押下
 const clickSubmitBtn = async function(){
+    $('.wedding-invitation-btn').prop('disabled', true);
     // 入力データを取得
     inputData = createDataSet();
 
@@ -51,7 +52,7 @@ const clickSubmitBtn = async function(){
         dispMessage(data.data.messages);
         $(window).scrollTop($('.wedding-invitation').position().top);
     }
-
+    $('.wedding-invitation-btn').prop('disabled', false);
 }
 
 // データセット作成
@@ -137,7 +138,8 @@ const execAjax = function(method, url, sendData, loadFlg = 1){
                 setTimeout(function(){
                     $("#overlay").fadeOut(300);
                 },500);    
-            }            
+            }
+            $('.wedding-invitation-btn').prop('disabled', false);        
             // ajax失敗
             alert('エラー:通信失敗');
         });
@@ -153,7 +155,7 @@ const buildLoading = function(){
         loading += '        <span class="spinner"></span>';
         loading += '    </div>';
         loading += '</div>';
-        $('body').append(loading);
+        $('.outside-container').append(loading);
     }
 }
 
