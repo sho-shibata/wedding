@@ -33,7 +33,7 @@ class MailService:
         text = self.__createContents(db_data)
         # MIMETextを作成
         msg = MIMEText(text, "plain", "utf-8")
-        msg['Subject'] = '柴田・浜辺の結婚式の参加可否について'
+        msg['Subject'] = '挙式・披露宴の出欠について'
         msg['From'] = self.INFO_EMAIL
         msg['To'] = db_data.email
         msg['Date'] = formatdate()
