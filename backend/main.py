@@ -14,7 +14,7 @@ load_dotenv('setting/.env')
 
 userModels.BaseModel.metadata.create_all(bind=engine)
 
-app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
+app = FastAPI()
 
 # オリジン
 ROOT_BACK = os.environ['ROOT']
