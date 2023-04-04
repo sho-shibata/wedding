@@ -20,3 +20,16 @@ class User(BaseModel):
     relationship: str
     # class Config:
     #     orm_mode = True
+
+class DispUser(BaseModel):
+    name: str
+    attendance: str
+    invitation_side: str
+    relationship: str
+    namekana: str
+    gender: str
+    address: str
+    mail: str
+    allergy: str
+    message: str
+    datetime: str

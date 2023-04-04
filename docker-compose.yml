@@ -7,13 +7,13 @@ services:
       - app
     ports:
       - '80:80'
-      - '443:443'
+      # - '443:443'
     environment:
       TZ: Asia/Tokyo
     volumes:
       - ./nginx_api/log:/var/log/nginx
       - ./nginx_api/conf.d:/etc/nginx/conf.d
-      - ./etc/letsencrypt:/etc/letsencrypt
+      # - ./etc/letsencrypt:/etc/letsencrypt
       - ./frontend:/usr/share/nginx
     networks:
       - nginx_network
@@ -30,12 +30,12 @@ services:
     networks:
       - nginx_network
       - shared_network
-  certbot:
-    image: certbot/certbot:v1.7.0
-    volumes:
-      - ./etc/letsencrypt:/etc/letsencrypt
-      - ./frontend:/usr/share/nginx
-    command: ["--version"]
+  # certbot:
+  #   image: certbot/certbot:v1.7.0
+  #   volumes:
+  #     - ./etc/letsencrypt:/etc/letsencrypt
+  #     - ./frontend:/usr/share/nginx
+  #   command: ["--version"]
 #   db:
 #     image: postgres:14
 #     container_name: postgres_db
