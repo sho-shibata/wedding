@@ -37,4 +37,17 @@ def login(userSchema : userSchema.User, db: Session = Depends(database.get_db)):
     log.info('register end')
     return returnSet
 
-    
+
+"""
+出欠確認API
+"""
+@router.post("/confirm_all")
+def login(word: str, db: Session = Depends(database.get_db)):
+    log.info('confirm_all start')
+    returnSet = {}
+    try:
+        returnSet = userService.getAllUser(db, word)
+    except Exception as e:
+        log.exception(e)
+    log.info('confirm_all end')
+    return returnSet

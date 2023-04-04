@@ -9,12 +9,15 @@ import os
 
 from service.mail import MailService
 from cruds import user as userCrud
+from schemas import user as userSchemas
 from log import logger
 
 # 本登録済
 EMAIL_CHECKED = '1'
 # 未本登録
 EMAIL_NOT_CHECKED = '2'
+
+CONST_WORD = os.environ['WORD']
 
 # ログインサービスクラス
 class UserService:
@@ -163,3 +166,31 @@ class UserService:
             return True
         return False
 
+    # 全ユーザ取得
+    def getAllUser(self, db, word):
+        result = []
+        if word == CONST_WORD:
+            addDatas = userCrud.get_users(db)
+            for data in addDatas:
+                content = self.__createContents(data)
+                result.append(content)
+        return result
+
+        # 招待状回答確認本文作成
+    def __createContents(self, db_data):
+        content = ''
+        # 内容をセット
+        content = userSchemas.DispUser(
+                            name = f'{db_data.last_name} {db_data.first_name}',
+                            attendance = '出席' if db_data.attendance == '1' else '欠席',
+                            invitation_side = '新郎ゲスト' if db_data.invitation_side == '1' else '新婦ゲスト',
+                            relationship = '友人' if db_data.relationship == '2' else '親族',
+                            namekana = f'{db_data.last_name_kana} {db_data.first_name_kana}',
+                            gender = '男性' if db_data.gender == '1' else '女性' if db_data.gender == '2' else 'その他',
+                            address = f'〒{db_data.zip_code} {db_data.address}',
+                            mail = db_data.email,
+                            allergy = db_data.allergy,
+                            message = db_data.message,
+                            datetime = db_data.created_at.strftime("%Y/%m/%d %H:%M:%S")
+                        )
+        return content

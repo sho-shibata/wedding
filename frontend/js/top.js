@@ -1,5 +1,5 @@
-const baseUrl = 'https://s-wedding-invitation.com/api/';
-// const baseUrl = 'http://localhost/api/';
+// const baseUrl = 'https://s-wedding-invitation.com/api/';
+const baseUrl = 'http://localhost/api/';
 
 $(function(){
     $('html,body').animate({ scrollTop: 0 }, '1');
