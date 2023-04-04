@@ -2,4 +2,3 @@
 *.pyc
 .env
 backend/log/logs
-frontend/image/not_use
